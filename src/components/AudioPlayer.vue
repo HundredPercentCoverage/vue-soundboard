@@ -5,7 +5,7 @@ import type { Sample } from '@/stores/audioSamples'
 
 const props = defineProps({ sample: Object as PropType<Sample> })
 
-const audio = new Audio(props.src)
+const audio = new Audio(props.sample?.src)
 const isPlaying = ref(false)
 
 function playAudio() {
