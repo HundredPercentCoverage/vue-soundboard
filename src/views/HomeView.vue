@@ -11,7 +11,11 @@ function fileChange(e: Event) {
   const target = e.target as HTMLInputElement
 
   if (target.files && target.files[0])
-    samples.push({ id: currentId.value, src: URL.createObjectURL(target.files[0]) })
+    samples.push({
+      id: currentId.value,
+      src: URL.createObjectURL(target.files[0]),
+      name: target.files[0].name
+    })
 }
 
 function openFile() {
