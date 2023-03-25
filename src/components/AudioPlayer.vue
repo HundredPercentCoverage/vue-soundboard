@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import type { PropType } from 'vue'
+import type { Sample } from '@/stores/audioSamples'
 
-const props = defineProps({ src: String })
+const props = defineProps({ sample: Object as PropType<Sample> })
 
 const audio = new Audio(props.src)
 const isPlaying = ref(false)
@@ -19,5 +21,5 @@ function playAudio() {
 </script>
 
 <template>
-  <button @click="playAudio">{{ isPlaying ? 'Pause' : 'Play' }}</button>
+    <p>{{ sample?.name }}</p>
 </template>

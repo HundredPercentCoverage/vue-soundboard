@@ -1,9 +1,10 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-type Sample = {
+export type Sample = {
   id: number
   src: string
+  name: string
 }
 
 export const useAudioSampleStore = defineStore('samples', () => {
