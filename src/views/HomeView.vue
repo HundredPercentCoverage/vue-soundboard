@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useAudioSampleStore } from '@/stores/audioSamples'
 import AudioPlayer from '@/components/AudioPlayer.vue'
+import PlusIcon from '@/components/icons/IconPlus.vue';
 
 const fileInput = ref<HTMLInputElement>()
 const currentId = ref(0)
@@ -25,10 +26,17 @@ function openFile() {
 
 <template>
   <main>
-    <h1>Home Page</h1>
+    <h1>Sample Deck</h1>
     <ul>
       <li v-for="sample in samples" :key="sample.id">
-        <AudioPlayer :src="sample.src" />
+        <AudioPlayer :sample="sample" />
+      </li>
+      <li class="item-container last-item">
+        <button @click="openFile">
+          <i>
+            <PlusIcon />
+          </i>
+        </button>
       </li>
     </ul>
     <input
@@ -40,6 +48,35 @@ function openFile() {
       accept="audio/*"
       hidden
     />
-    <button @click="openFile">Add file</button>
   </main>
 </template>
+
+<style scoped>
+@import '../assets/item.css';
+
+ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.last-item {
+  border: 2px dashed black;
+}
+
+.last-item > button {
+  border: none;
+  outline: none;
+  background-color: white;
+}
+
+.last-item > button > i {
+  display: flex;
+  place-items: center;
+  place-content: center;
+  width: 32px;
+  height: 32px;
+}
+</style>
