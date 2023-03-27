@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useAudioSampleStore } from '@/stores/audioSamples'
 import AudioPlayer from '@/components/AudioPlayer.vue'
-import PlusIcon from '@/components/icons/IconPlus.vue';
+import PlusIcon from '@/components/icons/IconPlus.vue'
 
 const fileInput = ref<HTMLInputElement>()
 const currentId = ref(0)
@@ -31,12 +31,11 @@ function openFile() {
       <li v-for="sample in samples" :key="sample.id">
         <AudioPlayer :sample="sample" />
       </li>
-      <li class="item-container last-item">
-        <button @click="openFile">
+      <li>
+        <button @click="openFile" class="item last-item">
           <i>
             <PlusIcon />
           </i>
-          <span>Add New</span>
         </button>
       </li>
     </ul>
@@ -70,32 +69,13 @@ ul {
   flex-wrap: wrap;
 }
 
+li {
+  margin: 10px;
+  height: 100%;
+}
+
 .last-item {
   border: 2px dashed black;
-}
-
-.last-item > button {
-  border: none;
-  outline: none;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.last-item > button:hover {
-  opacity: 0.5;
-  cursor: pointer;
-  /* background-color: aqua; */
-}
-
-.last-item > button > i {
-  display: flex;
-  place-items: center;
-  place-content: center;
-  width: 32px;
-  height: 32px;
+  min-width: 75px;
 }
 </style>
