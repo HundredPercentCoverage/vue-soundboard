@@ -5,7 +5,12 @@ import PauseIcon from './icons/IconPause.vue'
 import type { PropType } from 'vue'
 import type { Sample } from '@/stores/audioSamples'
 
-const props = defineProps({ sample: Object as PropType<Sample> })
+const props = defineProps({
+  sample: {
+    type: Object as PropType<Sample>,
+    required: true,
+  }
+})
 
 const audio = new Audio(props.sample?.src)
 const isPlaying = ref(false)
@@ -23,15 +28,12 @@ function playAudio() {
 </script>
 
 <template>
-  <div class="item-container">
-    <p>{{ sample?.name }}</p>
-    <button @click="playAudio" :title="isPlaying ? 'Pause' : 'Play'">
+    <p>{{ sample.name }}</p>
       <i>
         <PlayIcon v-if="!isPlaying" />
         <PauseIcon v-if="isPlaying" />
       </i>
     </button>
-  </div>
 </template>
 
 <style scoped>
