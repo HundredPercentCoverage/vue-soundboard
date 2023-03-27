@@ -15,7 +15,11 @@ const props = defineProps({
 const audio = new Audio(props.sample?.src)
 const isPlaying = ref(false)
 
-function playAudio() {
+audio.addEventListener('ended', () => {
+  isPlaying.value = false
+})
+
+function handlePlayClick() {
   if (isPlaying.value) {
     audio.pause()
     audio.currentTime = 0
@@ -28,12 +32,13 @@ function playAudio() {
 </script>
 
 <template>
+  <button @click="handlePlayClick" :title="isPlaying ? 'Pause' : 'Play'" class="item">
     <p>{{ sample.name }}</p>
-      <i>
-        <PlayIcon v-if="!isPlaying" />
-        <PauseIcon v-if="isPlaying" />
-      </i>
-    </button>
+    <i>
+      <PlayIcon v-if="!isPlaying" />
+      <PauseIcon v-if="isPlaying" />
+    </i>
+  </button>
 </template>
 
 <style scoped>
